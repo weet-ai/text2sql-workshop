@@ -8,6 +8,8 @@
 ### Overview
 
 * This repo demonstrates the power of **Large Language Models** and **Generative AI** for simplifying access to data: instead of querying a database using **SQL**, why not doing so using **Natural Language**?
+* **text2sql** is a basic Python package which ships with [Langchain](https://www.langchain.com/). It contains simple logic for connecting to a local [Postgresql](https://www.postgresql.org/) instance, and by leveraging Langchain's `create_sql_query_chain`, it obtains metadata from our local DB instances and creates multiple prompts which are executed against an LLM (in our case, [OpenAI](https://openai.com/) ChatGPT).
+* As a result, we are able to convert questions from Natural Language to SQL Queries that are compliant with Postgresql's dialect.
 
 ### Usage
 
@@ -23,8 +25,9 @@ sql = Text2SQL(model = "gpt-3.5-turbo")
 query = sql.query("How much do we have in total sales?")
 print(query)
 ```
+
 ```bash
-SELECT SUM("Weekly_Sales") AS total_sales FROM sales
+> SELECT SUM("Weekly_Sales") AS total_sales FROM sales
 ```
 
 ## Prereqs
