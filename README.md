@@ -1,5 +1,5 @@
 ## Text2SQL Workshop
-### Using OpenAI, Langchain and Postgresql
+### Using OpenAI, Langchain and Postgresql to Talk to Your Data
 
 <hr />
 
@@ -14,10 +14,23 @@
 * Create a virtual environment with your tool of choice and install the **text2sql** Python package
 * Once the package is installed, you can create an IPython kernel and use it in Jupyter - checkout the notebooks provided in the `sandbox` folder.
 
+#### Example
+
+```python
+from text2sql.core import Text2SQL
+
+sql = Text2SQL(model = "gpt-3.5-turbo")
+query = sql.query("How much do we have in total sales?")
+print(query)
+```
+```bash
+SELECT SUM("Weekly_Sales") AS total_sales FROM sales
+```
+
 ## Prereqs
 
 * We use Docker to boot up a Postgresql DB. Just run `docker-compose up -d` and you should be good to go
-* To ingest data into Postgres, run `text2sql/ingest.py`
+* To ingest data into Postgres, run `text2sql/ingest.py` (for simplification purposes, the package expects you to be running a local instance of Postgresql at port 5432)
 * Make sure that you properly set your `OPENAI_API_KEY`
 
 ## Authors
